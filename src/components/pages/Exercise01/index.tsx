@@ -10,9 +10,10 @@
  * 
  * You can modify all the code, this component isn't well designed intentionally. You can redesign it as you need.
  */
-
+import React from 'react'
 import './assets/styles.css'
 import { useState } from 'react'
+
 
 export default function Exercise01 () {
   const movies = [

@@ -14,11 +14,24 @@
 
 import "./assets/styles.css";
 import { useEffect, useState } from "react";
+import React from "react";
+
+interface Movie{
+  id: number;
+  title: string;
+  year: string;
+  runtime: string;
+  genres: string[];
+  director: string;
+  actors: string;
+  plot: string;
+  posterUrl: string;
+}
 
 export default function Exercise02 () {
-  const [movies, setMovies] = useState([])
-  const [fetchCount, setFetchCount] = useState(0)
-  const [loading, setLoading] = useState(false)
+  const [movies, setMovies] = useState<Movie[]>([])
+  const [fetchCount, setFetchCount] = useState<number>(0)
+  const [loading, setLoading] = useState<boolean>(false)
 
   const handleMovieFetch = () => {
     setLoading(true)

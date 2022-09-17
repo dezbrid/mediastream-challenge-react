@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Exercise01 from './components/pages/Exercise01';
 import Exercise02 from './components/pages/Exercise02';

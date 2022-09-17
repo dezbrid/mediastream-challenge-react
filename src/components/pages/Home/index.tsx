@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import "./assets/styles.css";
 import OttNextLogo from "./components/OttNextLogo";
