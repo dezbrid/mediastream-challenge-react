@@ -1,28 +1,34 @@
 import React from "react";
 import "./assets/styles.css";
+import { useAppDispatch } from "../../../../../app/hooks";
 
 import { MovieCardInterfaces } from "../../interface";
+import { addCart,incrementItemByID,decrementItemByID } from "../../cartSlice";
 
 export default function MovieCard(props: MovieCardInterfaces) {
+  const dispatch = useAppDispatch();
+
   return (
-    <li className={"movies__card" }>
+    <li className={"movies__card"}>
       <ul>
         <li>ID:{props.id}</li>
         <li>Name: {props.name}</li>
         <li>Price: ${props.price}</li>
       </ul>
-      {props.quantity? (
+      {props.quantity ? (
         <div className="movies__card-quantity">
-          <button onClick={() => console.log("Decrement quantity")}>
-            -
-          </button>
+          <button onClick={() => dispatch(decrementItemByID(props.id))}>-</button>
           <span>{props.quantity}</span>
-          <button onClick={() => console.log("Increment quantity")}>
-            +
-          </button>
+          <button onClick={() => dispatch(incrementItemByID(props.id))}>+</button>
         </div>
-      ):(
-        <button onClick={() => console.log("Add to cart")} className ="movies__card-add-cart">Add to cart</button>
+      ) : (
+        <button
+          onClick={() => dispatch(addCart(props))}
+          className="movies__card-add-cart"
+          disabled={props.disableAddtoCart}
+        >
+          Add to cart
+        </button>
       )}
     </li>
   );

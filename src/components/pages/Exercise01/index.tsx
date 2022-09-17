@@ -12,38 +12,43 @@
  */
 import React from "react";
 import "./assets/styles.css";
-import { useState } from "react";
+
+import { useAppSelector } from "../../../app/hooks";
 
 import MovieCard from "./components/MovieCard";
-
+import { selectList } from "./cartSlice";
 import { MOVIES } from "./mocks";
-import { Cart } from "./interface";
 
 export default function Exercise01() {
-  const [cart, setCart] = useState<Cart[]>([
-    {
-      id: 1,
-      name: "Star Wars",
-      price: 20,
-      quantity: 2,
-    },
-  ]);
+  const listCart = useAppSelector(selectList);
 
-  const getTotal = () => 0; // TODO: Implement this
+  const handleDisableAddtoCart = (id: number): boolean => {
+    return listCart.some((item) => item.id === id);
+  };
+  const getTotal = () =>
+    listCart.reduce(
+      (previousValue, currentValue) =>
+        previousValue + currentValue.price * currentValue.quantity,
+      0
+    ); // TODO: Implement this
 
   return (
     <section className="exercise01">
       <div className="movies__container movies__container-space">
         <ul>
           {MOVIES.map((movieItem) => (
-            <MovieCard {...movieItem} />
+            <MovieCard
+              {...movieItem}
+              key={movieItem.id}
+              disableAddtoCart={handleDisableAddtoCart(movieItem.id)}
+            />
           ))}
         </ul>
       </div>
       <div className="movies__container">
-        <ul>
-          {cart.map((cartItem) => (
-            <MovieCard {...cartItem} />
+        <ul className="movies__container-cart">
+          {listCart.map((cartItem) => (
+            <MovieCard {...cartItem} key={cartItem.id} />
           ))}
         </ul>
         <div className="movies__cart-total">

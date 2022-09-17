@@ -12,9 +12,14 @@
   padding: 1em;
   border-radius: .2em;
   width: 24em;
+  max-height: 494.4px;
 }
 .movies__container-space{
   margin-right: 2em;
+}
+.movies__container-cart{
+  overflow-x: auto;
+  max-height: 454.4px
 }
 .movies__cart-total {
   margin-top: 1em;
