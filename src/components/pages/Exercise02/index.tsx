@@ -32,16 +32,17 @@ export default function Exercise02 () {
   const [movies, setMovies] = useState<Movie[]>([])
   const [fetchCount, setFetchCount] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(false)
-
+ console.log({fetchCount})
   const handleMovieFetch = () => {
+    const intervalId=setInterval(()=>setFetchCount((x) =>x+ 1), 1000);
     setLoading(true)
-    setFetchCount(fetchCount + 1)
-    console.log('Getting movies')
+        console.log('Getting movies')
     fetch('http://localhost:3001/movies?_limit=50')
       .then(res => res.json())
       .then(json => {
         setMovies(json)
         setLoading(false)
+        clearInterval(intervalId)
       })
       .catch(() => {
         console.log('Run yarn movie-api for fake api')
@@ -50,7 +51,7 @@ export default function Exercise02 () {
 
   useEffect(() => {
     handleMovieFetch()
-  }, [handleMovieFetch])
+  }, [])
 
   return (
     <section className="movie-library">
