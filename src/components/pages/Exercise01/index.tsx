@@ -17,20 +17,33 @@ import { useAppSelector } from "../../../app/hooks";
 
 import MovieCard from "./components/MovieCard";
 import { selectList } from "./cartSlice";
-import { MOVIES } from "./mocks";
+import { MOVIES, DISCOUNTRULES } from "./mocks";
 
 export default function Exercise01() {
   const listCart = useAppSelector(selectList);
 
-  const handleDisableAddtoCart = (id: number): boolean => {
+  const iteminList = (id: number): boolean => {
     return listCart.some((item) => item.id === id);
   };
-  const getTotal = () =>
+  const handleDicount = ():number => {
+    for (let rules of DISCOUNTRULES) {
+      const inRules = rules.m.reduce(
+        (pre, curr) => pre && iteminList(curr),
+        true
+      );
+      if (inRules) return rules.discount;
+    }
+    return 0
+  };
+  const getTotal = () => {
+    const subtotal=
     listCart.reduce(
       (previousValue, currentValue) =>
         previousValue + currentValue.price * currentValue.quantity,
       0
-    ); // TODO: Implement this
+    );
+    return subtotal- handleDicount()
+  }; // TODO: Implement this
 
   return (
     <section className="exercise01">
@@ -40,7 +53,7 @@ export default function Exercise01() {
             <MovieCard
               {...movieItem}
               key={movieItem.id}
-              disableAddtoCart={handleDisableAddtoCart(movieItem.id)}
+              disableAddtoCart={iteminList(movieItem.id)}
             />
           ))}
         </ul>

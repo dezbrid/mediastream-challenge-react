@@ -1,4 +1,4 @@
-import { Movie } from './interface';
+import { Movie , DiscountRules} from './interface';
 
 export  const MOVIES:Movie[] = [
     {
@@ -23,7 +23,7 @@ export  const MOVIES:Movie[] = [
     }
   ];
 
-  export const discountRules = [
+  export const DISCOUNTRULES:DiscountRules[] = [
     {
       m: [3, 2],
       discount: 0.25
