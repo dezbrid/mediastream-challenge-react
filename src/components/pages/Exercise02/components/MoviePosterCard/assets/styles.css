@@ -1,18 +1,22 @@
 .movie-library__card {
-    background-color: #333333;
-    margin-bottom: 1em;
-    display: flex;
-    align-items: center;
-  }
-  
-  .movie-library__card img {
-    width: 10em;
-  }
-  
-  .movie-library__card ul {
-    padding: 1em;
-  }
-  
-  .movie-library__card li {
-    line-height: 120%;
-  }
+  background-color: #333333;
+  margin-bottom: 1em;
+  display: flex;
+  background-size: cover;
+  width: 240px;
+  height: 340px;
+  border-radius: 5px;
+}
+.movie-library__card-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: end;
+  border-radius: 5px;
+  background: linear-gradient(
+    0deg,
+    rgba(151, 215, 0, 0.85) 2%,
+    rgba(151, 215, 0, 0) 66%
+  );
+  padding: 15px;
+}

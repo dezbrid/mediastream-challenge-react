@@ -19,6 +19,8 @@
 }
 
 .movie-library__list {
-  padding: 1em;
-  background-color: #222222;
+   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
+

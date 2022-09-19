@@ -55,11 +55,11 @@ export default function Exercise02() {
           <p>Fetched {fetchCount} times</p>
         </div>
       ) : (
-        <ul className="movie-library__list">
+        <div className="movie-library__list">
           {movies.map((movie) => (
             <MoviePosterCard {...movie} key={movie.id} />
           ))}
-        </ul>
+        </div>
       )}
     </section>
   );
