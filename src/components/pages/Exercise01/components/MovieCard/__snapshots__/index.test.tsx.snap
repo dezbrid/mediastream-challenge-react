@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieCard /> <MovieCard /> snapshot 1`] = `
+<li
+  className="movies__card"
+>
+  <ul>
+    <li>
+      ID:
+      1
+    </li>
+    <li>
+      Name: 
+      Star Wars
+    </li>
+    <li>
+      Price: $
+      20
+    </li>
+  </ul>
+  <button
+    className="movies__card-add-cart"
+    onClick={[Function]}
+  >
+    Add to cart
+  </button>
+</li>
+`;

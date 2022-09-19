@@ -6,7 +6,7 @@ import cartReducer, {
 } from "./cartSlice";
 import { MOVIES } from "./mocks";
 
-describe("counter reducer", () => {
+describe("Cart reducer", () => {
   const initialState: CartState = {
     listCart: [],
   };

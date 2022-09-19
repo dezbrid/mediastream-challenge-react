@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Exercise01 /> <Exercise01 /> snapshot 1`] = `
+<section
+  className="exercise01"
+>
+  <div
+    className="movies__container movies__container-space"
+  >
+    <ul>
+      <li
+        className="movies__card"
+      >
+        <ul>
+          <li>
+            ID:
+            1
+          </li>
+          <li>
+            Name: 
+            Star Wars
+          </li>
+          <li>
+            Price: $
+            20
+          </li>
+        </ul>
+        <button
+          className="movies__card-add-cart"
+          disabled={false}
+          onClick={[Function]}
+        >
+          Add to cart
+        </button>
+      </li>
+      <li
+        className="movies__card"
+      >
+        <ul>
+          <li>
+            ID:
+            2
+          </li>
+          <li>
+            Name: 
+            Minions
+          </li>
+          <li>
+            Price: $
+            25
+          </li>
+        </ul>
+        <button
+          className="movies__card-add-cart"
+          disabled={false}
+          onClick={[Function]}
+        >
+          Add to cart
+        </button>
+      </li>
+      <li
+        className="movies__card"
+      >
+        <ul>
+          <li>
+            ID:
+            3
+          </li>
+          <li>
+            Name: 
+            Fast and Furious
+          </li>
+          <li>
+            Price: $
+            10
+          </li>
+        </ul>
+        <button
+          className="movies__card-add-cart"
+          disabled={false}
+          onClick={[Function]}
+        >
+          Add to cart
+        </button>
+      </li>
+      <li
+        className="movies__card"
+      >
+        <ul>
+          <li>
+            ID:
+            4
+          </li>
+          <li>
+            Name: 
+            The Lord of the Rings
+          </li>
+          <li>
+            Price: $
+            5
+          </li>
+        </ul>
+        <button
+          className="movies__card-add-cart"
+          disabled={false}
+          onClick={[Function]}
+        >
+          Add to cart
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div
+    className="movies__container"
+  >
+    <ul
+      className="movies__container-cart"
+    />
+    <div
+      className="movies__cart-total"
+    >
+      <p>
+        Total: $
+        0
+      </p>
+    </div>
+  </div>
+</section>
+`;
