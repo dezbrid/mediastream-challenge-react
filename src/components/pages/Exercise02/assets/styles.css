@@ -19,8 +19,7 @@
 }
 
 .movie-library__list {
-   display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 240px);
   justify-content: space-between;
 }
-
