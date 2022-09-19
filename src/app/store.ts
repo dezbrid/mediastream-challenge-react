@@ -1,9 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import cartReducer from '../components/pages/Exercise01/cartSlice';
+import movietSlice from "../components/pages/Exercise02/movieSlice";
 
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
+    movies:movietSlice
   },
 });
 

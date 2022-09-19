@@ -8,50 +8,47 @@
  * list of movies that belong to that gender (Filter all movies).
  * 3. Order the movies by year and implement a button that switch between ascending and descending order for the list
  * 4. Try to recreate the user interface that comes with the exercise (exercise02.png)
- * 
+ *
  * You can modify all the code, this component isn't well designed intentionally. You can redesign it as you need.
  */
 
 import React from "react";
 import "./assets/styles.css";
 import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 
+import { moviesAsync, moviesList, loadingMovie } from "./movieSlice";
 import MoviePosterCard from "./components/MoviePosterCard";
 import OptionsMovies from "./components/OptionsMovies";
-import {Movie} from "./interface";
 
-export default function Exercise02 () {
-  const [movies, setMovies] = useState<Movie[]>([])
-  const [fetchCount, setFetchCount] = useState<number>(0)
-  const [loading, setLoading] = useState<boolean>(false)
+export default function Exercise02() {
+  const dispatch = useAppDispatch();
+  const movies = useAppSelector(moviesList);
+  const loading = useAppSelector(loadingMovie);
+  const [fetchCount, setFetchCount] = useState<number>(0);
+  const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
 
   const handleMovieFetch = () => {
-    const intervalId=setInterval(()=>setFetchCount((x) =>x+ 1), 100);
-    setLoading(true)
-        console.log('Getting movies')
-    fetch('http://localhost:3001/movies?_limit=50')
-      .then(res => res.json())
-      .then(json => {
-        setMovies(json)
-        setLoading(false)
-        clearInterval(intervalId)
-        setFetchCount(0);
-      })
-      .catch(() => {
-        console.log('Run yarn movie-api for fake api')
-      })
-  }
+    const id = setInterval(() => setFetchCount((x) => x + 1), 100);
+    setIntervalId(id);
+    dispatch(moviesAsync());
+  };
 
   useEffect(() => {
-    handleMovieFetch()
-  }, [])
+    handleMovieFetch();
+  }, []);
+
+  useEffect(() => {
+    if (intervalId && !loading) {
+      clearInterval(intervalId);
+      setFetchCount(0);
+    }
+  }, [intervalId, loading]);
 
   return (
     <section className="movie-library">
-      <h1 className="movie-library__title">
-        Movie Library
-      </h1>
-      <OptionsMovies/>
+      <h1 className="movie-library__title">Movie Library</h1>
+      <OptionsMovies />
       {loading ? (
         <div className="movie-library__loading">
           <p>Loading...</p>
@@ -59,11 +56,11 @@ export default function Exercise02 () {
         </div>
       ) : (
         <ul className="movie-library__list">
-          {movies.map(movie => (
-           <MoviePosterCard {...movie}/>
+          {movies.map((movie) => (
+            <MoviePosterCard {...movie} key={movie.id} />
           ))}
         </ul>
       )}
     </section>
-  )
+  );
 }
