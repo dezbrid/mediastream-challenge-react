@@ -17,14 +17,14 @@ import "./assets/styles.css";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 
-import { moviesAsync, moviesList, loadingMovie } from "./movieSlice";
+import { moviesAsync, moviesList, loadingMovies } from "./movieSlice";
 import MoviePosterCard from "./components/MoviePosterCard";
-import OptionsMovies from "./components/OptionsMovies";
+import ActionsMovies from "./components/ActionsMovies";
 
 export default function Exercise02() {
   const dispatch = useAppDispatch();
   const movies = useAppSelector(moviesList);
-  const loading = useAppSelector(loadingMovie);
+  const loading = useAppSelector(loadingMovies);
   const [fetchCount, setFetchCount] = useState<number>(0);
   const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
 
@@ -48,7 +48,7 @@ export default function Exercise02() {
   return (
     <section className="movie-library">
       <h1 className="movie-library__title">Movie Library</h1>
-      <OptionsMovies />
+      <ActionsMovies />
       {loading ? (
         <div className="movie-library__loading">
           <p>Loading...</p>
