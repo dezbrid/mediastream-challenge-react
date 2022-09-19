@@ -12,29 +12,21 @@
  * You can modify all the code, this component isn't well designed intentionally. You can redesign it as you need.
  */
 
+import React from "react";
 import "./assets/styles.css";
 import { useEffect, useState } from "react";
-import React from "react";
 
-interface Movie{
-  id: number;
-  title: string;
-  year: string;
-  runtime: string;
-  genres: string[];
-  director: string;
-  actors: string;
-  plot: string;
-  posterUrl: string;
-}
+import MoviePosterCard from "./components/MoviePosterCard";
+import OptionsMovies from "./components/OptionsMovies";
+import {Movie} from "./interface";
 
 export default function Exercise02 () {
   const [movies, setMovies] = useState<Movie[]>([])
   const [fetchCount, setFetchCount] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(false)
- console.log({fetchCount})
+
   const handleMovieFetch = () => {
-    const intervalId=setInterval(()=>setFetchCount((x) =>x+ 1), 1000);
+    const intervalId=setInterval(()=>setFetchCount((x) =>x+ 1), 100);
     setLoading(true)
         console.log('Getting movies')
     fetch('http://localhost:3001/movies?_limit=50')
@@ -43,6 +35,7 @@ export default function Exercise02 () {
         setMovies(json)
         setLoading(false)
         clearInterval(intervalId)
+        setFetchCount(0);
       })
       .catch(() => {
         console.log('Run yarn movie-api for fake api')
@@ -58,12 +51,7 @@ export default function Exercise02 () {
       <h1 className="movie-library__title">
         Movie Library
       </h1>
-      <div className="movie-library__actions">
-        <select name="genre" placeholder="Search by genre...">
-          <option value="genre1">Genre 1</option>
-        </select>
-        <button>Order Descending</button>
-      </div>
+      <OptionsMovies/>
       {loading ? (
         <div className="movie-library__loading">
           <p>Loading...</p>
@@ -72,16 +60,7 @@ export default function Exercise02 () {
       ) : (
         <ul className="movie-library__list">
           {movies.map(movie => (
-            <li key={movie.id} className="movie-library__card">
-              <img src={movie.posterUrl} alt={movie.title} />
-              <ul>
-                <li>ID: {movie.id}</li>
-                <li>Title: {movie.title}</li>
-                <li>Year: {movie.year}</li>
-                <li>Runtime: {movie.runtime}</li>
-                <li>Genres: {movie.genres.join(', ')}</li>
-              </ul>
-            </li>
+           <MoviePosterCard {...movie}/>
           ))}
         </ul>
       )}
