@@ -1,2 +1,2 @@
-# mediastream-challenge-react
-React Challenge
+# React movies
+React movies
